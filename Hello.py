@@ -1,6 +1,8 @@
 # coding=UTF-8
+import os
 
 from flask import Flask, redirect, url_for, request, render_template, make_response
+from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
 
@@ -99,6 +101,23 @@ def delete_cookie():
     resp.delete_cookie("w3cshool")
     # 删除，只是让 cookie 过期。
     return resp
+
+
+# 上传文件
+app.config['UPLOAD_FOLDER'] = 'upload/'
+
+
+@app.route('/upload')
+def upload_file():
+    return render_template('upload.html')
+
+
+@app.route('/uploader', methods=['GET', 'POST'])
+def uploader():
+    if request.method == 'POST':
+        f = request.files['file']
+        f.save(os.path.join(app.config['UPLOAD_FOLDER'], secure_filename(f.filename)))
+        return 'file uploaded successfully'
 
 
 if __name__ == '__main__':
