@@ -42,7 +42,7 @@ def login():
 
 # 模板
 @app.route('/hello/')
-def index():
+def hello():
     # 往模板中传入的数据
     my_int = 18
     my_str = 'curry'
