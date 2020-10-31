@@ -11,7 +11,7 @@ class Config(object):
     """配置参数"""
     # 设置连接数据库的URL
     user = 'root'
-    password = '********'
+    password = 'famliycomefirst'
     database = 'flask_ex'
     app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://%s:%s@127.0.0.1:3306/%s' % (user, password, database)
 
