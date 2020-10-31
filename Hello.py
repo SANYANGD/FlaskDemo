@@ -1,9 +1,11 @@
+# coding=UTF-8
+
 from flask import Flask, redirect, url_for, request
 
 app = Flask(__name__)
 
 
-'''url_for()'''
+# url_for()
 @app.route('/admin')
 def hello_admin():
     return 'Hello Admin'
@@ -22,7 +24,7 @@ def hello_user(name):
         return redirect(url_for('hello_guest', guest=name))
 
 
-'''http方法'''
+# http方法
 @app.route('/success/<name>')
 def success(name):
     return 'welcome %s' % name
