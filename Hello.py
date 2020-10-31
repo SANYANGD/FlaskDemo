@@ -66,5 +66,18 @@ def index():
     return render_template("index.html")
 
 
+# 表单数据发送到模板
+@app.route('/stu')
+def student():
+    return render_template('student.html')
+
+
+@app.route('/result', methods=['POST', 'GET'])
+def result():
+    if request.method == 'POST':
+        result = request.form
+        return render_template("result.html", result=result)
+
+
 if __name__ == '__main__':
     app.run(debug=True)
