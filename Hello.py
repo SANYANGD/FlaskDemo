@@ -1,12 +1,12 @@
 # coding=UTF-8
 
-from flask import Flask, redirect, url_for, request
+from flask import Flask, redirect, url_for, request, render_template
 
 app = Flask(__name__)
 
 
 # url_for()
-@app.route('/admin')
+@app.route('/admin/')
 def hello_admin():
     return 'Hello Admin'
 
@@ -38,6 +38,32 @@ def login():
     else:
         user = request.args.get('nm')
         return redirect(url_for('success', name=user))
+
+
+# 模板
+@app.route('/hello/')
+def index():
+    # 往模板中传入的数据
+    my_int = 18
+    my_str = 'curry'
+    my_list = [1, 5, 4, 3, 2]
+    my_dict = {
+        'name': 'durant',
+        'age': 28
+    }
+    # render_template方法:渲染模板
+    # 参数1: 模板名称  参数n: 传到模板里的数据
+    return render_template('hello.html',
+                           my_int=my_int,
+                           my_str=my_str,
+                           my_list=my_list,
+                           my_dict=my_dict)
+
+
+# 静态文件
+@app.route("/index/")
+def index():
+    return render_template("index.html")
 
 
 if __name__ == '__main__':
